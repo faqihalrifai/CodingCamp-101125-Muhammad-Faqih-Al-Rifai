@@ -1,0 +1,162 @@
+/* style.css */
+
+:root {
+    --bg-dark: #22272e;
+    --bg-medium: #2d333b;
+    --bg-light: #373e48;
+    --text-primary: #cdd9e5;
+    --text-secondary: #768390;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-red: #f85149;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: var(--bg-medium);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#todo-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#task-input,
+#date-input {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--bg-light);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+/* Mengatur warna kalender picker */
+#date-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-add {
+    background-color: var(--accent-blue);
+    font-size: 20px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.btn-filter {
+    background-color: var(--text-secondary);
+}
+
+.btn-delete-all {
+    background-color: var(--accent-red);
+}
+
+.task-list-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    font-weight: bold;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--bg-light);
+}
+
+#task-list {
+    list-style: none;
+}
+
+#task-list .empty-message {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+}
+
+.task-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    background-color: var(--bg-light);
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.task-status {
+    font-style: italic;
+}
+
+.task-actions .btn {
+    padding: 5px 8px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.btn-complete {
+    background-color: var(--accent-green);
+}
+
+.btn-task-delete {
+    background-color: var(--accent-red);
+}
+
+/* Responsif sederhana */
+@media (max-width: 600px) {
+    .task-list-header {
+        display: none; /* Sembunyikan header tabel di layar kecil */
+    }
+    .task-item {
+        grid-template-columns: 1fr; /* Tumpuk item */
+        gap: 8px;
+    }
+    .task-item > div::before {
+        /* Tambahkan label untuk konteks di layar kecil */
+        font-weight: bold;
+        color: var(--text-secondary);
+    }
+    .task-item .task-date::before { content: "Due: "; }
+    .task-item .task-status::before { content: "Status: "; }
+    .task-item .task-actions::before { content: "Actions: "; }
+}
